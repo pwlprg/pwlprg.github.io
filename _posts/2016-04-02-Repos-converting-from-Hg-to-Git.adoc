@@ -1,4 +1,4 @@
-= Repos converting Hg -> Git
+= Repos converting from Hg to Git
 :hp-tags: hg, git, repo
 :hardbreaks:
 
