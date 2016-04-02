@@ -1,6 +1,6 @@
 = Repos converting Hg -> Git
-
 :hp-tags: hg, git, repo
+[%hardbreaks]
 
 Two methods which gave me best results:
 
@@ -8,17 +8,21 @@ Two methods which gave me best results:
 https://helgeklein.com/blog/2015/06/converting-mercurial-repositories-to-git-on-windows/
 
 %Userprofile%\mercurial.ini
-[extensions]
+----
+\[extensions\]
 hggit = 
 hgext.bookmarks =
-[git]
+\[git\]
 intree = True
+----
 
+----
 hg bookmark -r default master  (or)  hg bookmark master (for marking working tree as git's master)
 hg gclear  (optionally, but for me was required)
 hg gexport --debug
 git config --bool core.bare false
 git reset HEAD -- .
+----
 
 Problems: none
 Result: ?
@@ -26,18 +30,20 @@ Result: ?
 2. In Linux, side-by-side, by python tools fast-export
 http://hivelogic.com/articles/converting-from-mercurial-to-git/
 
+----
 cd ~/dev/
 git clone git://repo.or.cz/fast-export.git
 git init git_repo
 cd git_repo
 ~/dev/fast-export/hg-fast-export.sh -r /path/to/old/mercurial_repo
 git checkout HEAD
+----
 
 Problems:
-2.1. unnamed heads
+* unnamed heads
 - can be resolved by '--force' switch for fast-export
-- WON'T be converted to git
-2.2. hidden changesets
+- WON'T be converted to gi
+* hidden changesets
 - they are created if hg was using evolve extension (maybe when executing rebase?)
 - fast-export don't support these
 - they must be deleted from hg repo before conversion
