@@ -1,11 +1,10 @@
 = Repos converting Hg -> Git
 :hp-tags: hg, git, repo
-[%hardbreaks]
+:hardbreaks:
 
 Two methods which gave me best results:
 
 1. In Windows, in-place, by hg-git extension
-
 https://helgeklein.com/blog/2015/06/converting-mercurial-repositories-to-git-on-windows/
 
 %Userprofile%\mercurial.ini
@@ -26,11 +25,10 @@ git reset HEAD -- .
 ----
 
 Problems: none
-
 Result: ?
 
-2. In Linux, side-by-side, by python tools fast-export
 
+2. In Linux, side-by-side, by python tools fast-export
 http://hivelogic.com/articles/converting-from-mercurial-to-git/
 
 ----
@@ -43,19 +41,11 @@ git checkout HEAD
 ----
 
 Problems:
-
 * unnamed heads
-
 - can be resolved by '--force' switch for fast-export
-
 - WON'T be converted to gi
-
 * hidden changesets
-
 - they are created if hg was using evolve extension (maybe when executing rebase?)
-
 - fast-export don't support these
-
 - they must be deleted from hg repo before conversion
-
 - they can be restored after conversion (??)
